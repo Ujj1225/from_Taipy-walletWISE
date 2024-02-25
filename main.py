@@ -17,7 +17,7 @@ def generate():
 def generate_income(state):
     print(state.income)
     with open("income.txt", "a") as f:
-        f.write(f"{state.income,}")
+        f.write(f"{state.income},")
 
 
 def generate_expenses(state):
@@ -33,13 +33,13 @@ page = """
 
 <|text-right|toggle|theme|>\n<center>\n<|navbar|>\n</center>
 
-
+<|text-center|
 <|{path}|image|>
 INCOME: <|{income}|input|>
 <|Add to Income!|button|on_action=generate_income|>
-
 EXPENDITURE: <|{expenses}|input|>
 <|Add to Expenses!|button|on_action=generate_expenses|>
+|>
 
 <|text-center|
 <|Get Insights|button|on_action=generate|>
