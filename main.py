@@ -17,19 +17,22 @@ def generate():
 def generate_income(state):
     print(state.income)
     with open("income.txt", "a") as f:
-        f.write(f"{state.income }")
+        f.write(f"{state.income,}")
 
 
 def generate_expenses(state):
     print(state.expenses)
     with open("expenses.txt", "a") as f:
-        f.write(f"{state.expenses }")
+        f.write(f"{state.expenses,}")
 
 
 page = """
 <|text-center |
 <|{title}|hover_text="{hover_text}"|text|>
 |>
+
+<|text-right|toggle|theme|>\n<center>\n<|navbar|>\n</center>
+
 
 <|{path}|image|>
 INCOME: <|{income}|input|>
