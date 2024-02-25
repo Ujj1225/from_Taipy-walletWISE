@@ -1,16 +1,22 @@
 from taipy import Gui
 
-title = "walletWISE"
+title = "walletWISE 🤑"
 
-
-hover_text = "Your savvy sidekick in the finance game.\n🚀 Track, Thrive, Triumph.\n#MoneyMastery"
+hover_text = """
+🚀 Track, Thrive, Triumph.
+#MoneyMastery"""
 
 page = """
 <|text-center |
-<|{title}|hover_text="{hover_text}"|>
+<|{title}|hover_text="{hover_text}"|text|>
 |>
 """
 
 if __name__ == "__main__":
     app = Gui(page)
-    app.run(use_reloader=True)
+    app.run(
+        title="walletWISE",
+        watermark="Balance your revenue and expenses!",
+        favicon="wallet_wise.gif",
+        use_reloader=True,
+    )
