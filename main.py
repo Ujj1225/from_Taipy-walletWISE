@@ -7,6 +7,9 @@ hover_text = """🚀 Track, Thrive, Triumph. #MoneyMastery"""
 income = ""
 expenses = ""
 
+income_sector = ""
+expenses_sector = ""
+
 path = "wallet_calc.gif"
 
 
@@ -16,14 +19,16 @@ def generate():
 
 def generate_income(state):
     print(state.income)
-    with open("income.txt", "a") as f:
-        f.write(f"{state.income},")
+    if state.income != "":
+        with open("income.txt", "a") as f:
+            f.write(f"{state.income},")
 
 
 def generate_expenses(state):
     print(state.expenses)
-    with open("expenses.txt", "a") as f:
-        f.write(f"{state.expenses,}")
+    if state.expenses != "":
+        with open("expenses.txt", "a") as f:
+            f.write(f"{state.expenses},")
 
 
 page = """
@@ -35,9 +40,13 @@ page = """
 
 <|text-center|
 <|{path}|image|>
+
 INCOME: <|{income}|input|>
+Sector: <|{income_sector}|input|>
 <|Add to Income!|button|on_action=generate_income|>
+
 EXPENDITURE: <|{expenses}|input|>
+Sector: <|{expenses_sector}|input|>
 <|Add to Expenses!|button|on_action=generate_expenses|>
 |>
 
