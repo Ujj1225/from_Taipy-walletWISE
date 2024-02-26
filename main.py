@@ -1,4 +1,13 @@
 from taipy import Gui
+from dotenv import load_dotenv
+
+load_dotenv()
+
+import os
+import google.generativeai as genai
+
+# Configuration for GenAI
+genai.configure(api_key=os.getenv("API_KEY"))
 
 title = "walletWISE 🤑"
 
@@ -13,22 +22,28 @@ expenses_sector = ""
 path = "wallet_calc.gif"
 
 
+# loading Gemini Pro model
+model = genai.GenerativeModel("gemini-pro")
+
+
+# Generating content using the model
 def generate():
-    print("Good Work!")
+    response = model.generate_content(["Create a financial Saving plan for the month"])
+    print(response.text)
 
 
 def generate_income(state):
     print(state.income)
-    if state.income != "":
+    if state.income != "" and state.income_sector != "":
         with open("income.txt", "a") as f:
-            f.write(f"{state.income},")
+            f.write(f"{state.income_sector}:{state.income},")
 
 
 def generate_expenses(state):
     print(state.expenses)
-    if state.expenses != "":
+    if state.expenses != "" and state.expenses_sector != "":
         with open("expenses.txt", "a") as f:
-            f.write(f"{state.expenses},")
+            f.write(f"{state.expenses_sector}:{state.expenses},")
 
 
 page = """
@@ -41,14 +56,17 @@ page = """
 <|text-center|
 <|{path}|image|>
 
+
 INCOME: <|{income}|input|>
 Sector: <|{income_sector}|input|>
 <|Add to Income!|button|on_action=generate_income|>
+
 
 EXPENDITURE: <|{expenses}|input|>
 Sector: <|{expenses_sector}|input|>
 <|Add to Expenses!|button|on_action=generate_expenses|>
 |>
+
 
 <|text-center|
 <|Get Insights|button|on_action=generate|>
