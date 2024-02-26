@@ -38,6 +38,7 @@ model = genai.GenerativeModel("gemini-pro")
 
 # Generating content using the model
 def generate(state):
+    state.message = "Please wait while we analyze your INCOME AND EXPENDITURE"
     response = model.generate_content(["Create a financial Saving plan for the month"])
     print(response.text)
     state.message = response.text
@@ -55,6 +56,16 @@ def generate_expenses(state):
     if state.expenses != "" and state.expenses_sector != "":
         with open("expenses.txt", "a") as f:
             f.write(f"{state.expenses_sector}:{state.expenses},")
+
+
+def clear_income(state):
+    state.income_sector = ""
+    state.income = ""
+
+
+def clear_expenses(state):
+    state.expenses_sector = ""
+    state.expenses = ""
 
 
 page = """
@@ -123,6 +134,7 @@ EXPENDITURE: <|{expenses}|input|>
 <|class_name=button_row|
 <|Add to Expense|button|on_action=generate_expenses|>
 <|Clear|button|on_action=clear_expenses|>
+|>
 |>
 
 <|text-center|
