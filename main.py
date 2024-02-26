@@ -18,6 +18,7 @@ expenses = ""
 
 income_sector = ""
 expenses_sector = ""
+message = ""
 
 path = "wallet_calc.gif"
 
@@ -27,7 +28,6 @@ source_of_expenses = [
     "Clothing",
     "Education",
     "Health",
-    "Entertainment",
     "Misc",
 ]
 
@@ -37,9 +37,10 @@ model = genai.GenerativeModel("gemini-pro")
 
 
 # Generating content using the model
-def generate():
+def generate(state):
     response = model.generate_content(["Create a financial Saving plan for the month"])
     print(response.text)
+    state.message = response.text
 
 
 def generate_income(state):
@@ -57,41 +58,79 @@ def generate_expenses(state):
 
 
 page = """
+
+<style>
+
+.button_row{
+    display: flex;
+}
+
+.fullwidth{
+width:100% !important;
+}
+
+.form{
+ display:flex;
+ flex-direction:column;
+ justify-content:space-evenly;
+ padding:2rem;
+ margin-top:2rem;
+}
+
+.middleSection{
+ display:flex;
+  flex-wrap: wrap;
+ justify-content:center;
+ gap:2rem;
+ padding:"2rem"
+ 
+}
+
+.fullCenter{
+ display:flex;
+ justify-content:center;
+ align-items:center;
+  flex-direction:column;
+}
+</style>
+
+<|text-right|toggle|theme|>\n<center>\n<|navbar|>\n</center>
 <|text-center |
 <|{title}|hover_text="{hover_text}"|text|>
 |>
+<|middleSection| 
+<|fullCenter|  
+ <|{path}|image|>
+ |>
+<||
 
-<|text-right|toggle|theme|>\n<center>\n<|navbar|>\n</center>
-
-<|text-center|
-<|{path}|image|>
-
-
-<|text-center|
+<|form| 
 
 <|1 1|layout|
-
 ### Income **Amount & Sector**{: .color-primary}!    
-INCOME: <|{income}|input|>
-<|{expenses_sector}|selector|lov={source_of_expenses}|dropdown|label=source of expense|> 
+TOTAL INCOME: <|{income}|input|>
+<|{income_sector}|selector|lov={source_of_income}|dropdown|label=sources of income|> 
 |>
+<|class_name = button_row|
 <|Add to Income!|button|on_action=generate_income|>
-
-<|text-center|
+<|Clear|button|on_action=clear_income|>
+|>
 <|1 1|layout|
 ### Expenses **Amount & Sector**{: .color-primary}!    
 EXPENDITURE: <|{expenses}|input|>
-<|{expenses_sector}|selector|lov={source_of_expenses}|dropdown|label=source of expense|> 
+<|{expenses_sector}|selector|lov={source_of_expenses}|dropdown|label=sources of expense|> 
 |>
-<|Add to Expenses!|button|on_action=generate_expenses|>
+<|class_name=button_row|
+<|Add to Expense|button|on_action=generate_expenses|>
+<|Clear|button|on_action=clear_expenses|>
 |>
 
 <|text-center|
 <|Get Insights|button|on_action=generate|>
 |>
-
-
-<|part|class_name=card mt1|
+|>
+|>
+<|part|class_name=card|
 <|{message}|input|multiline|not active|label= your message will appear here...|class_name=fullwidth|>
 |>
 
