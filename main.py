@@ -21,6 +21,9 @@ expenses_sector = ""
 
 path = "wallet_calc.gif"
 
+source_of_income = ["salary", "dividend", "business_revenue", "tax_rebate", "others"]
+source_of_expenses = ["Fooding", "Clothing", "Education", "Health", "Entertainment", "Misc"]
+
 
 # loading Gemini Pro model
 model = genai.GenerativeModel("gemini-pro")
@@ -58,12 +61,29 @@ page = """
 
 
 INCOME: <|{income}|input|>
-Sector: <|{income_sector}|input|>
+<|text-center|
+
+<|1 1|layout|
+
+### Choose **Sector**{: .color-primary}!    
+
+<|{income_sector}|selector|lov={source_of_income}|dropdown|on_change=update_income|>
+
+|>
+<br />
 <|Add to Income!|button|on_action=generate_income|>
 
 
 EXPENDITURE: <|{expenses}|input|>
-Sector: <|{expenses_sector}|input|>
+<|text-center|
+
+<|1 1|layout|
+
+### Choose **Sector**{: .color-primary}!    
+
+<|{expenses_sector}|selector|lov={source_of_expenses}|dropdown|on_change=update_expenses|>
+
+|>
 <|Add to Expenses!|button|on_action=generate_expenses|>
 |>
 
@@ -79,7 +99,7 @@ if __name__ == "__main__":
     app = Gui(page)
     app.run(
         title="walletWISE",
-        watermark="Balance your revenue and expenses!",
+        watermark="""Balance your revenue and expenses! Copyright @Ujj1225""",
         favicon="wallet_wise.gif",
         use_reloader=True,
     )
