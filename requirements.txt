@@ -1,0 +1,3 @@
+taipy
+python-dotenv
+google-generativeai
