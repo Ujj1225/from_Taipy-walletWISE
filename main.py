@@ -22,7 +22,14 @@ expenses_sector = ""
 path = "wallet_calc.gif"
 
 source_of_income = ["salary", "dividend", "business_revenue", "tax_rebate", "others"]
-source_of_expenses = ["Fooding", "Clothing", "Education", "Health", "Entertainment", "Misc"]
+source_of_expenses = [
+    "Fooding",
+    "Clothing",
+    "Education",
+    "Health",
+    "Entertainment",
+    "Misc",
+]
 
 
 # loading Gemini Pro model
@@ -60,33 +67,24 @@ page = """
 <|{path}|image|>
 
 
-INCOME: <|{income}|input|>
 <|text-center|
 
 <|1 1|layout|
 
-### Choose **Sector**{: .color-primary}!    
-
-<|{income_sector}|selector|lov={source_of_income}|dropdown|on_change=update_income|>
-
+### Income **Amount & Sector**{: .color-primary}!    
+INCOME: <|{income}|input|>
+<|{expenses_sector}|selector|lov={source_of_expenses}|dropdown|on_change=on_selection|label=source of expense|> 
 |>
-<br />
 <|Add to Income!|button|on_action=generate_income|>
 
-
-EXPENDITURE: <|{expenses}|input|>
 <|text-center|
-
 <|1 1|layout|
-
-### Choose **Sector**{: .color-primary}!    
-
-<|{expenses_sector}|selector|lov={source_of_expenses}|dropdown|on_change=update_expenses|>
-
+### Expenses **Amount & Sector**{: .color-primary}!    
+EXPENDITURE: <|{expenses}|input|>
+<|{expenses_sector}|selector|lov={source_of_expenses}|dropdown|on_change=on_selection|label=source of expense|> 
 |>
 <|Add to Expenses!|button|on_action=generate_expenses|>
 |>
-
 
 <|text-center|
 <|Get Insights|button|on_action=generate|>
