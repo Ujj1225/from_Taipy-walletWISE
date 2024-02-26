@@ -73,7 +73,7 @@ page = """
 
 ### Income **Amount & Sector**{: .color-primary}!    
 INCOME: <|{income}|input|>
-<|{expenses_sector}|selector|lov={source_of_expenses}|dropdown|on_change=on_selection|label=source of expense|> 
+<|{expenses_sector}|selector|lov={source_of_expenses}|dropdown|label=source of expense|> 
 |>
 <|Add to Income!|button|on_action=generate_income|>
 
@@ -81,13 +81,18 @@ INCOME: <|{income}|input|>
 <|1 1|layout|
 ### Expenses **Amount & Sector**{: .color-primary}!    
 EXPENDITURE: <|{expenses}|input|>
-<|{expenses_sector}|selector|lov={source_of_expenses}|dropdown|on_change=on_selection|label=source of expense|> 
+<|{expenses_sector}|selector|lov={source_of_expenses}|dropdown|label=source of expense|> 
 |>
 <|Add to Expenses!|button|on_action=generate_expenses|>
 |>
 
 <|text-center|
 <|Get Insights|button|on_action=generate|>
+|>
+
+
+<|part|class_name=card mt1|
+<|{message}|input|multiline|not active|label= your message will appear here...|class_name=fullwidth|>
 |>
 
 """
