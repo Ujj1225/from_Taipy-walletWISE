@@ -1,4 +1,4 @@
-# Contributing to dharan-growmore
+# Contributing to walletWISE
 
 Welcome! We appreciate your interest in contributing to the **walletWISE** project. Follow the steps below to make your contribution:
 
@@ -20,7 +20,7 @@ Follow these steps for contributions:
 2. **Clone Your Fork**:
 
     ```bash
-    git clone https://github.com/yourusername/walletWISE.git
+    git clone https://github.com/yourusername/from_Taipy-walletWISE.git
     ```
 
 3. **Create a Branch**:
