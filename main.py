@@ -5,6 +5,7 @@ load_dotenv()
 
 import os
 import google.generativeai as genai
+import subprocess
 
 from income_pi_data import income_pi_data
 from expenses_pi_data import expenses_pi_data
@@ -76,7 +77,7 @@ def generate(state):
     with open("expenses.txt", "r") as expenses_file:
         expenses_data = expenses_file.read().strip()
 
-    print(f"Income_data: {income_data},Expenses_data: {expenses_data}")
+    print(f"Income_data: {income_data}\nExpenses_data: {expenses_data}")
 
     print(
         f"Sum of Income=>{get_sum(income_data)}\n Sum of Expenses=>{get_sum(expenses_data)}"
@@ -97,6 +98,9 @@ def generate(state):
 
     # Access the parts of the response
     response_text = result.candidates[0].content.parts[0].text
+
+    # Run pi_data.py using subprocess
+    subprocess.run(["python3", "pi_data.py"])
 
     print(response_text)
     state.message = f"""
@@ -134,6 +138,27 @@ def clear_expenses(state):
 page = """
 
 <style>
+
+.greenButton:hover{
+    text-decoration: none;
+    background-color: rgba(255, 96, 255, 0.08);
+    border: 1px solid rgb(150, 255, 0);
+}
+
+.greenButton{
+    border: 1px solid rgba(150, 255, 0, 0.5);
+    color:rgb(150, 255, 0);
+    margin-bottom:2rem;
+}
+
+.pichart{
+    display:flex;
+}
+
+.chartbox{
+    display:flex;
+    border: 1px solid white;
+}
 
 .button_row{
     display: flex;
@@ -187,7 +212,7 @@ TOTAL INCOME: <|{income}|input|>
 |>
 <|class_name = button_row|
 <|Add to Income!|button|on_action=generate_income|>
-<|Clear|button|on_action=clear_income|>
+<|Clear|button|class_name=blueButton|on_action=clear_income|>
 |>
 <|1 1|layout|
 ### Expenses **Amount & Sector**{: .color-primary}!    
@@ -196,12 +221,12 @@ EXPENDITURE: <|{expenses}|input|>
 |>
 <|class_name=button_row|
 <|Add to Expense|button|on_action=generate_expenses|>
-<|Clear|button|on_action=clear_expenses|>
+<|Clear|button|class_name=blueButton|on_action=clear_expenses|>
 |>
 |>
 
 <|text-center|
-<|Get Insights|button|on_action=generate|>
+<|Get Insights|button|class_name=greenButton|on_action=generate|>
 |>
 |>
 |>
