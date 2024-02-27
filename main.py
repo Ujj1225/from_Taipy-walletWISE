@@ -49,9 +49,21 @@ def get_sum(data_string):
         return None
 
 
+# Net amount
+def net_amount(income_sum, expense_sum):
+    if income_sum < expense_sum:
+        result = "loss"
+        net_amount = expense_sum - income_sum
+    else:
+        result = "profit"
+        net_amount = income_sum - expense_sum
+
+    return result, net_amount
+
+
 # Generating content using the model
 def generate(state):
-    state.message = "Please wait while we analyze your INCOME AND EXPENSES!"
+    state.message = "Please wait while we analyze your INCOME AND EXPENSES..."
 
     # Read data from income.txt
     with open("income.txt", "r") as income_file:
@@ -61,15 +73,20 @@ def generate(state):
     with open("expenses.txt", "r") as expenses_file:
         expenses_data = expenses_file.read().strip()
 
-    print(f"Income_data: {income_data}\tExpenses_data: {expenses_data}")
+    print(f"Income_data: {income_data},Expenses_data: {expenses_data}")
 
     print(
         f"Sum of Income=>{get_sum(income_data)}\n Sum of Expenses=>{get_sum(expenses_data)}"
     )
 
+    status = net_amount(get_sum(income_data), get_sum(expenses_data))
+
     # Combine the data into a prompt for generating response
-    prompt = f"""Create a financial Saving plan while analyzing \n\nIncome:\n{income_data}\n\nExpenses:\n{expenses_data}
-    Please provide only 7 points and remember to be inclined on saving money and investing it!
+    prompt = f"""Create a financial Saving plan while analyzing 
+    Income_Data:\n{income_data}\n
+    Expenses:\n{expenses_data}\n
+    The person is in {status[0]} and the total {status[0]} amount is: {status[1]}\n
+    \nPlease provide only 7 tips for the person by analyzing the Income, Expense and total {status[0]}!\n
     """
 
     # Generate content using the model
@@ -79,7 +96,12 @@ def generate(state):
     response_text = result.candidates[0].content.parts[0].text
 
     print(response_text)
-    state.message = response_text
+    state.message = f"""
+    Income:\n{income_data}\n
+    Expenses:\n{expenses_data}\n
+    The person is in {status[0]} and the total {status[0]} amount is: {status[1]}\n\n
+    You should try to follow this: \n{response_text}
+    """
 
 
 def generate_income(state):
@@ -181,7 +203,7 @@ EXPENDITURE: <|{expenses}|input|>
 |>
 |>
 <|part|class_name=card|
-<|{message}|input|multiline|not active|label= Your Insights will be appear here...|class_name=fullwidth|>
+<|{message}|input|multiline|not active|label= Your Insights will be appear here!|class_name=fullwidth|>
 |>
 
 """
