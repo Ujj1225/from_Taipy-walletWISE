@@ -100,7 +100,7 @@ def generate(state):
     Income:\n{income_data}\n
     Expenses:\n{expenses_data}\n
     The person is in {status[0]} and the total {status[0]} amount is: {status[1]}\n\n
-    You should try to follow this: \n{response_text}
+    You should try to follow this: \n\n\n{response_text}
     """
 
 
