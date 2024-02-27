@@ -6,6 +6,9 @@ load_dotenv()
 import os
 import google.generativeai as genai
 
+from income_pi_data import income_pi_data
+from expenses_pi_data import expenses_pi_data
+
 # Configuration for GenAI
 genai.configure(api_key=os.getenv("API_KEY"))
 
@@ -206,6 +209,9 @@ EXPENDITURE: <|{expenses}|input|>
 <|{message}|input|multiline|not active|label= Your Insights will be appear here!|class_name=fullwidth|>
 |>
 
+<|{income_pi_data}|chart|type=pie|values=Amount|labels=Income_Source|>
+
+<|{expenses_pi_data}|chart|type=pie|values=Amount|labels=Expenses_Source|>
 """
 
 
