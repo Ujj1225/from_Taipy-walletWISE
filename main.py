@@ -36,12 +36,50 @@ source_of_expenses = [
 model = genai.GenerativeModel("gemini-pro")
 
 
+# Getting Sum of Data under different heading
+def get_sum(data_string):
+    try:
+        entries = data_string.split(",")
+        total_sum = sum(
+            int(entry.split(":")[1]) for entry in entries if len(entry.split(":")) == 2
+        )
+        return total_sum
+    except (ValueError, IndexError):
+        print("Error: Unable to calculate sum.")
+        return None
+
+
 # Generating content using the model
 def generate(state):
-    state.message = "Please wait while we analyze your INCOME AND EXPENDITURE"
-    response = model.generate_content(["Create a financial Saving plan for the month"])
-    print(response.text)
-    state.message = response.text
+    state.message = "Please wait while we analyze your INCOME AND EXPENSES!"
+
+    # Read data from income.txt
+    with open("income.txt", "r") as income_file:
+        income_data = income_file.read().strip()
+
+    # Read data from expenses.txt
+    with open("expenses.txt", "r") as expenses_file:
+        expenses_data = expenses_file.read().strip()
+
+    print(f"Income_data: {income_data}\tExpenses_data: {expenses_data}")
+
+    print(
+        f"Sum of Income=>{get_sum(income_data)}\n Sum of Expenses=>{get_sum(expenses_data)}"
+    )
+
+    # Combine the data into a prompt for generating response
+    prompt = f"""Create a financial Saving plan while analyzing \n\nIncome:\n{income_data}\n\nExpenses:\n{expenses_data}
+    Please provide only 7 points and remember to be inclined on saving money and investing it!
+    """
+
+    # Generate content using the model
+    result = model.generate_content([prompt])
+
+    # Access the parts of the response
+    response_text = result.candidates[0].content.parts[0].text
+
+    print(response_text)
+    state.message = response_text
 
 
 def generate_income(state):
@@ -143,7 +181,7 @@ EXPENDITURE: <|{expenses}|input|>
 |>
 |>
 <|part|class_name=card|
-<|{message}|input|multiline|not active|label= your message will appear here...|class_name=fullwidth|>
+<|{message}|input|multiline|not active|label= Your Insights will be appear here...|class_name=fullwidth|>
 |>
 
 """
