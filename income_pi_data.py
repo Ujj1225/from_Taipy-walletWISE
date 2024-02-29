@@ -1,1 +1,1 @@
-income_pi_data = {'Income_Source': ['business_revenue', 'dividend', 'others', 'salary'], 'Amount': [1650.0, 450.0, 500.0, 3000.0]}
+income_pi_data = {'Income_Source': ['business_revenue', 'dividend', 'others', 'salary', 'bank', 'tax_rebate'], 'Amount': [6650.0, 1002449.0, 500.0, 63000.0, 100.0, 20666.0]}

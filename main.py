@@ -101,6 +101,11 @@ def generate(state):
 
     # Run pi_data.py using subprocess
     subprocess.run(["python3", "pi_data.py"])
+    from income_pi_data import income_pi_data
+    from expenses_pi_data import expenses_pi_data
+
+    state.income_pi_data = income_pi_data
+    state.expenses_pi_data = expenses_pi_data
 
     print(response_text)
     state.message = f"""
@@ -178,7 +183,7 @@ width:100% !important;
 
 .middleSection{
  display:flex;
-  flex-wrap: wrap;
+flex-wrap: wrap;
  justify-content:center;
  gap:2rem;
  padding:"2rem"
@@ -234,9 +239,12 @@ EXPENDITURE: <|{expenses}|input|>
 <|{message}|input|multiline|not active|label= Your Insights will be appear here!|class_name=fullwidth|>
 |>
 
-<|{income_pi_data}|chart|type=pie|values=Amount|labels=Income_Source|>
 
-<|{expenses_pi_data}|chart|type=pie|values=Amount|labels=Expenses_Source|>
+<part|class_name=pi_chart|
+<|{income_pi_data}|chart|rebuild|type=pie|values=Amount|labels=Income_Source|>
+
+<|{expenses_pi_data}|chart|rebuild|type=pie|values=Amount|labels=Expenses_Source|>
+|>|>
 """
 
 
