@@ -183,7 +183,7 @@ width:100% !important;
 
 .middleSection{
  display:flex;
-flex-wrap: wrap;
+ flex-wrap: wrap;
  justify-content:center;
  gap:2rem;
  padding:"2rem"
@@ -239,14 +239,16 @@ EXPENDITURE: <|{expenses}|input|>
 <|{message}|input|multiline|not active|label= Your Insights will be appear here!|class_name=fullwidth|>
 |>
 
-
-<part|class_name=pi_chart|
+<|1 1|layout|
+<part|class_name=card mt1|
+## Income Chart
 <|{income_pi_data}|chart|rebuild|type=pie|values=Amount|labels=Income_Source|>
-
+|>
+<part|class_name=card mt1|
+## Expense Chart
 <|{expenses_pi_data}|chart|rebuild|type=pie|values=Amount|labels=Expenses_Source|>
-|>|>
+|>
 """
-
 
 if __name__ == "__main__":
     app = Gui(page)
