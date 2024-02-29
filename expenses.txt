@@ -1,1 +1,0 @@
-fooding:600,fooding:400,Health:10000,Clothing:2000,Education:5000,Misc:15000,Clothing:5000,Education:20000,Fooding:100000,Clothing:10000000,

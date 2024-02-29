@@ -1,1 +1,0 @@
-business_revenue:750,dividend:300,others:500,dividend:150,business_revenue:900,salary:3000,bank:100,tax_rebate:666,dividend:999,tax_rebate:10000,salary:20000,salary:40000,dividend:1000,tax_rebate:10000,business_revenue:5000,dividend:1000000,
