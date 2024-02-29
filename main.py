@@ -161,8 +161,10 @@ def parse_and_format_tips(tips_text):
         if line.strip()
     ]
 
-    # Create a user-friendly message with line breaks
-    user_friendly_message = "\n\n".join(tip for tip in tips_lines)
+    # Create a user-friendly message with existing numbering and line breaks
+    user_friendly_message = "\n\n".join(
+        f"{index}. {tip}" if index > 0 else tip for index, tip in enumerate(tips_lines)
+    )
 
     return user_friendly_message
 
