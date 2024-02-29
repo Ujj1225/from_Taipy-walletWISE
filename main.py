@@ -1,5 +1,6 @@
 from taipy import Gui
 from dotenv import load_dotenv
+import pandas as pd
 
 load_dotenv()
 
@@ -101,11 +102,41 @@ def generate(state):
 
     # Run pi_data.py using subprocess
     subprocess.run(["python3", "pi_data.py"])
-    from income_pi_data import income_pi_data
-    from expenses_pi_data import expenses_pi_data
+    # income_data is a string (business_revenue:750,dividend:300,others:500)
+    # parse income_data into a dictionary
+    income_data_dict = {}
+    for entry in income_data.split(","):
+        if ":" in entry:
+            key, value = entry.split(":")
+            if key in income_data_dict:
+                income_data_dict[key] += int(value)
+            else:
+                income_data_dict[key] = int(value)
 
-    state.income_pi_data = income_pi_data
-    state.expenses_pi_data = expenses_pi_data
+    income_data_df = pd.DataFrame(
+        {
+            "Income_Source": list(income_data_dict.keys()),
+            "Amount": list(income_data_dict.values()),
+        }
+    )
+    state.income_pi_data = pd.DataFrame(income_data_df)
+
+    expenses_data_dict = {}
+    for entry in expenses_data.split(","):
+        if ":" in entry:
+            key, value = entry.split(":")
+            if key in expenses_data_dict:
+                expenses_data_dict[key] += int(value)
+            else:
+                expenses_data_dict[key] = int(value)
+
+    expenses_data_df = pd.DataFrame(
+        {
+            "Expenses_Source": list(expenses_data_dict.keys()),
+            "Amount": list(expenses_data_dict.values()),
+        }
+    )
+    state.expenses_pi_data = pd.DataFrame(expenses_data_df)
 
     print(response_text)
     state.message = f"""
@@ -241,11 +272,11 @@ EXPENDITURE: <|{expenses}|input|>
 
 <|1 1|layout|
 <part|class_name=card mt1|
-## Income Chart
+## Income **Chart**{:.color-primary}
 <|{income_pi_data}|chart|rebuild|type=pie|values=Amount|labels=Income_Source|>
 |>
 <part|class_name=card mt1|
-## Expense Chart
+## Expense **Chart**{:.color-primary}
 <|{expenses_pi_data}|chart|rebuild|type=pie|values=Amount|labels=Expenses_Source|>
 |>
 """
