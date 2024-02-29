@@ -7,6 +7,7 @@ load_dotenv()
 import os
 import google.generativeai as genai
 import subprocess
+import json
 
 from income_pi_data import income_pi_data
 from expenses_pi_data import expenses_pi_data
@@ -138,13 +139,32 @@ def generate(state):
     )
     state.expenses_pi_data = pd.DataFrame(expenses_data_df)
 
+    res = response_text
+    user_friendly_message = parse_and_format_tips(res)
     print(response_text)
     state.message = f"""
     Income:\n{income_data}\n
     Expenses:\n{expenses_data}\n
     The person is in {status[0]} and the total {status[0]} amount is: {status[1]}\n\n
-    You should try to follow this: \n\n\n{response_text}
+    You should try to follow this: \n\n\n{user_friendly_message}
     """
+
+
+def parse_and_format_tips(tips_text):
+    # Remove ** signs and split the text into lines
+    lines = tips_text.split("\n")
+
+    # Filter out empty lines and lines starting with a number
+    tips_lines = [
+        line.lstrip("1234567890. ").replace("**", "").strip("* ")
+        for line in lines
+        if line.strip()
+    ]
+
+    # Create a user-friendly message with line breaks
+    user_friendly_message = "\n\n".join(tip for tip in tips_lines)
+
+    return user_friendly_message
 
 
 def generate_income(state):
