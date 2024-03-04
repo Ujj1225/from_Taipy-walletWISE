@@ -1,9 +1,8 @@
 # from_Taipy-walletWISE
 
-# The readme is not yet complete 
+# The readme is not yet complete
 
 # <p align="center"><img src="https://github.com/Ujj1225/from_Taipy-walletWISE/blob/main/assets/wallet_wise_logo.jpg" width=300 /></p>
-
 
 <p align="center">
     <p align="center">
@@ -68,19 +67,18 @@
     <summary> Sample UI of Questionare</summary>
     <img src="https://github.com/Rajendrakhanal/MyPeace/assets/95162952/ea58c3a8-bcb4-4037-8bf0-4680e673e6e7" width=750/>
   </details>
+
 - Empathetic Conversations
 
-    Implement a chatbot powered by Gemini's API to engage users in empathetic and supportive conversations.
+  Implement a Insight provider powered by Gemini's API to provide users feedback on their Income and Expenses.
   <details>
-    <summary> Sample UI of Chatbot</summary>
-    <img src="https://github.com/Rajendrakhanal/MyPeace/assets/95162952/d4fc2cf7-a1d4-4a0a-a655-917d2e039ef4" width=750/>
+    <summary> Sample UI of GetInsights!</summary>
+    <img src="https://github.com/Ujj1225/from_Taipy-walletWISE/blob/main/assets/getinsights.png" width=750/>
   </details>
 
 ## Demo
 
-
-[Mypeace Project Demo Video](https://github.com/Rajendrakhanal/MyPeace/assets/95162952/ce006bc1-abac-4273-b8da-c56c5b1a9b38)
-
+[walletWISE Project Demo Video]()
 
 ## Installation
 
@@ -90,12 +88,12 @@ Before running walletWISE, you will need an OpenAI API key from Gemini Services.
 
 ### Setup
 
-#### FrontEnd
+#### Follow the given steps to set up walletWISE
 
 1. Clone the repository:
 
    ```bash
-   git clone 
+   git clone git@github.com:Ujj1225/from_Taipy-walletWISE.git
    ```
 
 2. Installation of required packages
@@ -106,28 +104,30 @@ Before running walletWISE, you will need an OpenAI API key from Gemini Services.
 
 3. Setting up .env file for saving gemini api key
 
-  - Create a .env file 
-    
-    ```bash 
-    # inside .env file
-    API_KEY=******************************* # Your key 
-    ```
+- Create a .env file
+
+  ```bash
+  # inside .env file
+  API_KEY=******************************* # Your key
+  ```
 
 4. Running the project:
 
-   ```bash
-   python3 main.py
-   ```
-  - Simply try to run the **main.py** file as it is the entry point of application
+- Simply try to run the **main.py** file as it is the entry point of application
+- You may do so by:
 
+```bash
+python3 main.py
+```
 
 ## Dependencies
 
 ### Frontend
+
 ### Backend
+
 - Taipy for full stack
 - Other dependencies or requirements are mentioned in [requirements.txt](/requirements.txt)
-
 
 ## License
 
