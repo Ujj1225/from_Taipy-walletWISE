@@ -34,7 +34,7 @@
 
 ## Problem Statement
 
-# <p align="center"><img src="https://github.com/Ujj1225/from_Taipy-walletWISE/blob/main/assets/walletWISE_problem.png" width=750 /></p>
+# <p align="center"><img src="https://github.com/Ujj1225/from_Taipy-walletWISE/blob/main/assets/problem.png" width=750 /></p>
 
 ## Solutions
 
