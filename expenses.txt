@@ -1,1 +1,0 @@
-Fooding:5000,Clothing:2000,Education:3500,
