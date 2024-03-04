@@ -32,6 +32,14 @@
 <p align="center">
 </p>
 
+## Problem Statement
+
+# <p align="center"><img src="https://github.com/Ujj1225/from_Taipy-walletWISE/blob/main/assets/walletWISE_problem.png" width=750 /></p>
+
+## Solutions
+
+# <p align="center"><img src="https://github.com/Ujj1225/from_Taipy-walletWISE/blob/main/assets/walletWISE_solutions.png" width=750 /></p>
+
 ## Table of Contents
 
 - [Features](#features)
@@ -115,11 +123,12 @@ python3 main.py
 
 ## Dependencies
 
+- Taipy for full stack
+
 ### Frontend
 
 ### Backend
 
-- Taipy for full stack
 - Other dependencies or requirements are mentioned in [requirements.txt](/requirements.txt)
 
 ## License
