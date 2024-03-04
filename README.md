@@ -44,35 +44,30 @@
 
 ## Features
 
-- Login and SignUp
+- Income and Expense Tracker
+
+  User can enter their Income, Expense along with the sector as headings. This allows them to comprehend and explore how much they are earning from which sector and how much they are spending on which sector.
   <details>
-    <summary> UI of landing page </summary>
+    <summary> UI of Tracker </summary>
     <img src="https://github.com/Rajendrakhanal/MyPeace/assets/95162952/08bdfcb1-861a-451c-b69e-60c24b4fc0a4" width=750/>
   </details>
 
-  <details>
-    <summary> UI of Login page</summary>
-    <img src="https://github.com/Rajendrakhanal/MyPeace/assets/95162952/0c7856f7-5bca-4145-8597-3818e294c58c" width=750/>
-  </details>
+- Insight Box
 
+  Here, User's income and expense are analyzed, mathematically shown and 7 tips for making better, wiser financial decisions are displayed. 
   <details>
-    <summary>UI of Registration for new User </summary>
-    <img src="https://github.com/Rajendrakhanal/MyPeace/assets/95162952/bebba8dd-1456-4b7a-ae96-cc0ae499474f" width=750/>
-  </details>
+    <summary> Insight box before getting insights!</summary>
+    <img src="https://github.com/Rajendrakhanal/MyPeace/assets/95162952/ea58c3a8-bcb4-4037-8bf0-4680e673e6e7" width=750/>
 
-- Personalized Mental Health System
-
-  Analyze user input and stress levels to suggest personalized mindfulness and stress reduction techniques.
-  <details>
-    <summary> Sample UI of Questionare</summary>
+    <summary> Insight box after getting insights!</summary>
     <img src="https://github.com/Rajendrakhanal/MyPeace/assets/95162952/ea58c3a8-bcb4-4037-8bf0-4680e673e6e7" width=750/>
   </details>
 
-- Empathetic Conversations
+- Realtime Visualization
 
-  Implement a Insight provider powered by Gemini's API to provide users feedback on their Income and Expenses.
+  Implemented a visualizer where you can see the different headings from which you earnt money and the different headings on which you spent it.
   <details>
-    <summary> Sample UI of GetInsights!</summary>
+    <summary> Visualization </summary>
     <img src="https://github.com/Ujj1225/from_Taipy-walletWISE/blob/main/assets/getinsights.png" width=750/>
   </details>
 

@@ -1,0 +1,1 @@
+salary:10000,dividend:5000,business_revenue:1100,tax_rebate:200,
