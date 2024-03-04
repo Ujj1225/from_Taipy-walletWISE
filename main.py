@@ -92,6 +92,8 @@ def generate(state):
     Income_Data:\n{income_data}\n
     Expenses:\n{expenses_data}\n
     The person is in {status[0]} and the total {status[0]} amount is: {status[1]}\n
+    While giving tips please use the data provided to you as reference and give tips based on that!
+    Remember the goal is to maximize saving, maximize investment while minimizing useless expenses
     \nPlease provide only 7 tips for the person by analyzing the Income, Expense and total {status[0]}!\n
     """
 

@@ -34,11 +34,11 @@
 
 ## Problem Statement
 
-# <p align="center"><img src="https://github.com/Ujj1225/from_Taipy-walletWISE/blob/main/assets/problem.png" width=750 /></p>
+# <p align="center"><img src="https://github.com/Ujj1225/from_Taipy-walletWISE/blob/main/assets/problem.png" width=750 height=425 /></p>
 
 ## Solutions
 
-# <p align="center"><img src="https://github.com/Ujj1225/from_Taipy-walletWISE/blob/main/assets/walletWISE_solutions.png" width=750 /></p>
+# <p align="center"><img src="https://github.com/Ujj1225/from_Taipy-walletWISE/blob/main/assets/walletWISE_solutions.png" width=750 height=425 /></p>
 
 ## Table of Contents
 
@@ -94,7 +94,7 @@ Before running walletWISE, you will need an OpenAI API key from Gemini Services.
 1. Clone the repository:
 
    ```bash
-   git clone git@github.com:Ujj1225/from_Taipy-walletWISE.git
+   git clone https://github.com/Ujj1225/from_Taipy-walletWISE.git
    ```
 
 2. Installation of required packages
