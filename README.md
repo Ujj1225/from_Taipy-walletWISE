@@ -79,7 +79,7 @@
 
 ## Demo
 
-[walletWISE Project Demo Video](https://github.com/Ujj1225/from_Taipy-walletWISE/blob/main/assets/walletWISE.webm)
+https://github.com/SusheelThapa/from_taipy_census/assets/83917129/025733fe-d963-4ed1-8de5-5a514a4a6070
 
 ## Installation
 
